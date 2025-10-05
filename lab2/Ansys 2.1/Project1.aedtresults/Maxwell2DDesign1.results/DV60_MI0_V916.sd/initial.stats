@@ -1,0 +1,7 @@
+           | Num Elements | Min elem length | Max elem length | RMS elem length |   Min elem area |   Max elem area |  Mean elem area | Std Devn (area)
+       461 |           72 |       0.0913193 |        0.169453 |        0.133882 |      0.00116172 |       0.0103376 |       0.0027221 |      0.00276919
+       467 |          306 |       0.0601792 |         3.41071 |         1.12076 |     0.000665683 |         3.02045 |        0.326157 |        0.612861
+NumTotalTris 378
+NumBkTris 0
+User_Units cm
+mesh_fileset_version 2
