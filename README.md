@@ -1,3 +1,3 @@
 # ELEC3105
 
-![Wow GIF](wow.gif)
+![Scary](dontgohere/trefoil_gol.gif)
