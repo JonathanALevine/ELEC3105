@@ -1,6 +1,6 @@
 SimValueCacheVersionID=1
 $begin 'SimValueInfos'
-	NextUniqueID=3
+	NextUniqueID=4
 	MoveBackwards=false
 	$begin 'SimValue'
 		ID=0
@@ -23,6 +23,14 @@ $begin 'SimValueInfos'
 		$begin 'SimValueParams'
 			QuantityName='Mag_H'
 			ValueState(329, 55, 1, 1)
+			MatrixSize(0, 0)
+		$end 'SimValueParams'
+	$end 'SimValue'
+	$begin 'SimValue'
+		ID=3
+		$begin 'SimValueParams'
+			QuantityName='Mag_H'
+			ValueState(330, 55, 1, 1)
 			MatrixSize(0, 0)
 		$end 'SimValueParams'
 	$end 'SimValue'

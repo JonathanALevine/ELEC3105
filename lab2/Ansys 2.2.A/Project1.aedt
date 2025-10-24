@@ -3,8 +3,14 @@ $begin 'AnsoftProject'
 	Product='ElectronicsDesktop'
 	FileOwnedByWorkbench=false
 	$begin 'Desktop'
-		Version(2017, 2)
+		Version(2024, 2)
 		InfrastructureVersion(1, 0)
+		$begin 'FactoryHeader'
+			$begin 'geometry3deditor'
+				KernelVersion(2, 0)
+				ProjectContainsGeometry3D='1'
+			$end 'geometry3deditor'
+		$end 'FactoryHeader'
 	$end 'Desktop'
 	UsesAdvancedFeatures=false
 	NextUniqueID=0
@@ -15,9 +21,6 @@ $begin 'AnsoftProject'
 	$begin 'PlanarEMEnvironment'
 		Version(1, 0)
 	$end 'PlanarEMEnvironment'
-	$begin 'HFIEEnvironment'
-		Version(1, 0)
-	$end 'HFIEEnvironment'
 	$begin 'Q3DEnvironment'
 		Version(1, 0)
 	$end 'Q3DEnvironment'
@@ -42,21 +45,19 @@ $begin 'AnsoftProject'
 	$begin 'MaxCirEnvironment'
 		Version(1, 0)
 	$end 'MaxCirEnvironment'
-	$begin 'SimplorerEnvironment'
+	$begin 'IcepakEnvironment'
 		Version(1, 0)
-	$end 'SimplorerEnvironment'
-	$begin 'EmitEnvironment'
+	$end 'IcepakEnvironment'
+	$begin 'MechanicalEnvironment'
 		Version(1, 0)
-	$end 'EmitEnvironment'
-	$begin 'FilterDesignEnvironment'
-	$end 'FilterDesignEnvironment'
+	$end 'MechanicalEnvironment'
 	$begin 'SchematicEnvironment'
 		Version(1, 0)
 	$end 'SchematicEnvironment'
 	$begin 'geometry3deditor'
 		Version(1, 0)
 	$end 'geometry3deditor'
-	ReadVersion=6
+	ReadVersion=12
 	$begin 'DesignMgrEnvironment'
 		CompInstCounter=1
 		GPortCounter=0
@@ -72,17 +73,6 @@ $begin 'AnsoftProject'
 	$end 'ProjectDatasets'
 	VariableOrders[0:]
 	$begin 'Definitions'
-		$begin 'Folders'
-			Definitions(1604, 10000, 1, 1, 0, false, false)
-			Materials(1604, 9500, 9, 2, 1, false, false)
-			Scripts(1604, 9502, 33500, 4, 1, false, false)
-			Padstacks(1604, 9003, 12, 105, 1, false, false)
-			Symbols(1604, 9001, 10, 103, 1, false, false)
-			Footprints(1604, 9002, 11, 104, 1, false, false)
-			Components(1604, 9000, 8, 102, 1, false, false)
-			Models(1604, 9004, 13, 106, 1, false, false)
-			Packages(1604, 9005, 33502, 107, 1, false, false)
-		$end 'Folders'
 		$begin 'Materials'
 			$begin 'vacuum'
 				CoordinateSystemType='Cartesian'
@@ -109,7 +99,7 @@ $begin 'AnsoftProject'
 				specific_heat='385'
 				youngs_modulus='120000000000'
 				poissons_ratio='0.38'
-				thermal_expansion_coeffcient='1.77e-005'
+				thermal_expansion_coefficient='1.77e-05'
 				ModTime=1132068239
 				Library='Materials'
 				LibLocation='SysLibrary'
@@ -126,7 +116,7 @@ $begin 'AnsoftProject'
 				thermal_conductivity='0.0261'
 				mass_density='1.1614'
 				specific_heat='1006'
-				thermal_expansion_coeffcient='0.00333'
+				thermal_expansion_coefficient='0.00333'
 				ModTime=1461288056
 				Library='Materials'
 				LibLocation='SysLibrary'
@@ -153,22 +143,22 @@ $begin 'AnsoftProject'
 			$end 'Maxwell2DDesign1'
 		$end 'Symbols'
 		$begin 'DefInfo'
-			Maxwell2DDesign1(0, 0, '', 1494940635, '', 'Maxwell2DDesign1', '', '', '', '', '', 'Design.bmp', '', 'Project', '', '', 1494940635, '', 0)
+			Maxwell2DDesign1(1002, 0, 0, 0, '', 1494940635, '', 'Maxwell2DDesign1', '', '', '', '', '', 'Design.bmp', '', 'Project', '', '', 1494940635, '', 0, 0)
 		$end 'DefInfo'
 		$begin 'Compdefs'
 			$begin 'Maxwell2DDesign1'
 				Library=''
+				CircuitEnv=0
 				Refbase='U'
 				NumParts=1
 				ModSinceLib=true
-				CircuitEnv=0
 				$begin 'Properties'
 					TextProp('Representation', 'SRD', '', 'Maxwell2DDesign1')
 					TextProp('Owner', 'SRD', '', 'Maxwell 2D')
 				$end 'Properties'
 				CompExtID=6
 				$begin 'Parameters'
-					ButtonProp('CosimDefinition', 'D', '', '', 'Edit', 40501, ButtonPropClientData())
+					ButtonProp('CosimDefinition', 'D', '', 'Edit', 'Edit', 40501, ButtonPropClientData())
 					MenuProp('CoSimulator', 'D', '', 'DefaultNetlist', 0)
 				$end 'Parameters'
 				$begin 'CosimDefinitions'
@@ -199,9 +189,13 @@ $begin 'AnsoftProject'
 		$end 'TemperatureSettings'
 		ObjsEnabledForDeformation()
 		ComputeIncrementalMatrix=false
-		PerfectConductorThreshold=1e+030
+		PerfectConductorThreshold=1e+30
 		InsulatorThreshold=1
 		BackgroundMaterialName='vacuum'
+		ObjsEnabledForStressName()
+		Enabled2DRZStressRRObjects()
+		Enabled2DRZStressZZObjects()
+		Enabled2DRZStressRZObjects()
 		SolutionType='Magnetostatic'
 		GeometryMode='about Z'
 		SolutionType='Magnetostatic'
@@ -220,9 +214,8 @@ $begin 'AnsoftProject'
 			$end 'DesignDatasets'
 			VariableOrders[0:]
 			$begin 'Editor3D Doc Preferences'
-				'Plane Background'=true
-				BackgroundColor1=16777215
-				BackgroundColor2=0
+				BackgroundColorVersion=1
+				'Plane Background'=0
 				'Need Lights'=true
 				'Ambient Light'=9671571
 				'Num Lights'=4
@@ -236,16 +229,18 @@ $begin 'AnsoftProject'
 			WorkingCS=1
 			$begin 'GeometryCore'
 				BlockVersionID=3
-				DataVersion=50
-				NativeKernel='ACIS'
-				NativeKernelVersionID=9
+				DataVersion=51
+				NativeKernel='PARASOLID'
+				NativeKernelVersionID=24
 				Units='cm'
+				ModelExtents=10000
 				InstanceID=-1
 				$begin 'ValidationOptions'
 					EntityCheckLevel='Strict'
 					IgnoreUnclassifiedObjects=false
 					SkipIntersectionChecks=false
 				$end 'ValidationOptions'
+				ContainsGeomLinkUDM=false
 				$begin 'GeometryOperations'
 					BlockVersionID=2
 					$begin 'AnsoftRangedIDServerManager'
@@ -290,9 +285,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"air"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='Rectangle'
@@ -317,7 +322,7 @@ $begin 'AnsoftProject'
 											NumFaces=0
 											NumWires=1
 											NumLoops=0
-											NumCoedges=4
+											NumCoedges=0
 											NumEdges=4
 											NumVertices=4
 										$end 'Topology'
@@ -373,12 +378,12 @@ $begin 'AnsoftProject'
 														FaceTopol(1, 4, 4, 4)
 														$begin 'FaceGeometry'
 															Area=300
-															FcUVMid(5, -2.91008359956644e-015, 15)
+															FcUVMid(5, -2.91008359956643e-15, 15)
 															$begin 'FcTolVts'
-																TolVt(10, 0, 30, 0)
-																TolVt(9.99999999999999, -4.82436794902991e-015, 0, 0)
-																TolVt(-5.32907051820075e-015, -5.82016719913287e-015, 3.5527136788005e-015, 0)
-																TolVt(0, -9.9579925010296e-016, 30, 0)
+																TolVt(10, 0, 30, 5e-07)
+																TolVt(9.99999999999999, -4.82436794902991e-15, 0, 5e-07)
+																TolVt(-5.55111512312578e-15, -5.82016719913287e-15, 0, 5e-07)
+																TolVt(0, -9.9579925010296e-16, 30, 5e-07)
 															$end 'FcTolVts'
 														$end 'FaceGeometry'
 													$end 'FaceGeomTopol'
@@ -393,6 +398,9 @@ $begin 'AnsoftProject'
 									ParentOperationID=608
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -406,9 +414,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='Circle'
@@ -433,9 +451,9 @@ $begin 'AnsoftProject'
 											NumFaces=0
 											NumWires=1
 											NumLoops=0
-											NumCoedges=1
+											NumCoedges=0
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=741
 										StartFaceID=-1
@@ -443,7 +461,7 @@ $begin 'AnsoftProject'
 										StartVertexID=743
 										NumNewFaces=0
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -468,7 +486,7 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=-1
 										StartFaceID=745
@@ -486,12 +504,11 @@ $begin 'AnsoftProject'
 													NormalizedSerialNum=0
 													ID=745
 													$begin 'FaceGeomTopol'
-														FaceTopol(1, 1, 1, 1)
+														FaceTopol(1, 1, 1, 0)
 														$begin 'FaceGeometry'
 															Area=0.793252145031421
 															FcUVMid(5, 0, 5)
 															$begin 'FcTolVts'
-																TolVt(5, 8.08071630637877e-017, 5.50249378105604, 0)
 															$end 'FcTolVts'
 														$end 'FaceGeometry'
 													$end 'FaceGeomTopol'
@@ -522,6 +539,9 @@ $begin 'AnsoftProject'
 									ReferenceUDMID=-1
 								$end 'CloneToOperation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -535,9 +555,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -559,15 +589,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=748
 										StartFaceID=749
 										StartEdgeID=750
-										StartVertexID=751
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -575,14 +605,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='749')
 											CloneEdges('742'='750')
 											CloneVertices('743'='751')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -596,9 +630,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -620,15 +664,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=753
 										StartFaceID=754
 										StartEdgeID=755
-										StartVertexID=756
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -636,14 +680,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='754')
 											CloneEdges('742'='755')
 											CloneVertices('743'='756')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -657,9 +705,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -681,15 +739,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=758
 										StartFaceID=759
 										StartEdgeID=760
-										StartVertexID=761
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -697,14 +755,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='759')
 											CloneEdges('742'='760')
 											CloneVertices('743'='761')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -718,9 +780,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -742,15 +814,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=763
 										StartFaceID=764
 										StartEdgeID=765
-										StartVertexID=766
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -758,14 +830,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='764')
 											CloneEdges('742'='765')
 											CloneVertices('743'='766')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -779,9 +855,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -803,15 +889,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=768
 										StartFaceID=769
 										StartEdgeID=770
-										StartVertexID=771
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -819,14 +905,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='769')
 											CloneEdges('742'='770')
 											CloneVertices('743'='771')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -840,9 +930,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -864,15 +964,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=773
 										StartFaceID=774
 										StartEdgeID=775
-										StartVertexID=776
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -880,14 +980,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='774')
 											CloneEdges('742'='775')
 											CloneVertices('743'='776')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -901,9 +1005,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -925,15 +1039,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=778
 										StartFaceID=779
 										StartEdgeID=780
-										StartVertexID=781
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -941,14 +1055,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='779')
 											CloneEdges('742'='780')
 											CloneVertices('743'='781')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -962,9 +1080,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -986,15 +1114,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=783
 										StartFaceID=784
 										StartEdgeID=785
-										StartVertexID=786
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1002,14 +1130,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='784')
 											CloneEdges('742'='785')
 											CloneVertices('743'='786')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1023,9 +1155,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -1047,15 +1189,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=788
 										StartFaceID=789
 										StartEdgeID=790
-										StartVertexID=791
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1063,14 +1205,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='789')
 											CloneEdges('742'='790')
 											CloneVertices('743'='791')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1084,9 +1230,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -1108,15 +1264,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=793
 										StartFaceID=794
 										StartEdgeID=795
-										StartVertexID=796
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1124,14 +1280,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='794')
 											CloneEdges('742'='795')
 											CloneVertices('743'='796')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1145,9 +1305,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -1169,15 +1339,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=798
 										StartFaceID=799
 										StartEdgeID=800
-										StartVertexID=801
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1185,14 +1355,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='799')
 											CloneEdges('742'='800')
 											CloneVertices('743'='801')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1206,9 +1380,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -1230,15 +1414,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=803
 										StartFaceID=804
 										StartEdgeID=805
-										StartVertexID=806
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1246,14 +1430,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='804')
 											CloneEdges('742'='805')
 											CloneVertices('743'='806')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1267,9 +1455,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -1291,15 +1489,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=808
 										StartFaceID=809
 										StartEdgeID=810
-										StartVertexID=811
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1307,14 +1505,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='809')
 											CloneEdges('742'='810')
 											CloneVertices('743'='811')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1328,9 +1530,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"copper"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='DuplicateBodyAlongLine'
@@ -1352,15 +1564,15 @@ $begin 'AnsoftProject'
 											NumLoops=1
 											NumCoedges=1
 											NumEdges=1
-											NumVertices=1
+											NumVertices=0
 										$end 'Topology'
 										BodyID=813
 										StartFaceID=814
 										StartEdgeID=815
-										StartVertexID=816
+										StartVertexID=-1
 										NumNewFaces=1
 										NumNewEdges=1
-										NumNewVertices=1
+										NumNewVertices=0
 										FaceNameAndIDMap()
 										EdgeNameAndIDMap()
 										VertexNameAndIDMap()
@@ -1368,14 +1580,18 @@ $begin 'AnsoftProject'
 											CloneFaces('745'='814')
 											CloneEdges('742'='815')
 											CloneVertices('743'='816')
+											CloneIdentityHelperKernelType=0
 										$end 'CloneFromOperationIdentityHelper'
 										OriginalFaceIDs(745)
 										OriginalEdgeIDs(742)
-										OriginalVertexIDs(743)
+										OriginalVertexIDs()
 									$end 'OperationIdentity'
 									PlaceHolderOpnId=746
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1389,9 +1605,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"air"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='Rectangle'
@@ -1416,7 +1642,7 @@ $begin 'AnsoftProject'
 											NumFaces=0
 											NumWires=1
 											NumLoops=0
-											NumCoedges=4
+											NumCoedges=0
 											NumEdges=4
 											NumVertices=4
 										$end 'Topology'
@@ -1472,12 +1698,12 @@ $begin 'AnsoftProject'
 														FaceTopol(1, 4, 4, 4)
 														$begin 'FaceGeometry'
 															Area=260
-															FcUVMid(5, 2.58845906963111e-015, 13)
+															FcUVMid(5, 2.58845906963111e-15, 13)
 															$begin 'FcTolVts'
-																TolVt(0, 0, 0, 0)
-																TolVt(4.77612251667468e-015, 4.18111888915926e-015, 26, 0)
-																TolVt(10, 5.17691813926222e-015, 26, 0)
-																TolVt(10, 9.9579925010296e-016, -1.83697019872103e-015, 0)
+																TolVt(0, 0, 0, 5e-07)
+																TolVt(4.77612251667468e-15, 4.18111888915926e-15, 26, 5e-07)
+																TolVt(10, 5.17691813926221e-15, 26, 5e-07)
+																TolVt(10, 9.9579925010296e-16, -1.83697019872103e-15, 5e-07)
 															$end 'FcTolVts'
 														$end 'FaceGeometry'
 													$end 'FaceGeomTopol'
@@ -1492,6 +1718,9 @@ $begin 'AnsoftProject'
 									ParentOperationID=817
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1505,9 +1734,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"vacuum"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='Polyline'
@@ -1555,7 +1794,7 @@ $begin 'AnsoftProject'
 											NumFaces=0
 											NumWires=1
 											NumLoops=0
-											NumCoedges=1
+											NumCoedges=0
 											NumEdges=1
 											NumVertices=2
 										$end 'Topology'
@@ -1572,6 +1811,9 @@ $begin 'AnsoftProject'
 									$end 'OperationIdentity'
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 						$begin 'GeometryPart'
 							$begin 'Attributes'
@@ -1585,9 +1827,19 @@ $begin 'AnsoftProject'
 								MaterialValue='"vacuum"'
 								SurfaceMaterialValue='""'
 								SolveInside=true
+								ShellElement=false
+								ShellElementThickness='0cm'
+								ReferenceTemperature='20cel'
 								IsMaterialEditable=true
+								IsSurfaceMaterialEditable=true
 								UseMaterialAppearance=false
+								IsLightweight=false
+								IsAlwaysHidden=false
 							$end 'Attributes'
+							$begin 'PhysicsAttributes'
+								SuppressedForPhysics='False'
+								SuppressedForPhysicsEditable=true
+							$end 'PhysicsAttributes'
 							$begin 'Operations'
 								$begin 'Operation'
 									OperationType='Polyline'
@@ -1635,7 +1887,7 @@ $begin 'AnsoftProject'
 											NumFaces=0
 											NumWires=1
 											NumLoops=0
-											NumCoedges=1
+											NumCoedges=0
 											NumEdges=1
 											NumVertices=2
 										$end 'Topology'
@@ -1652,6 +1904,9 @@ $begin 'AnsoftProject'
 									$end 'OperationIdentity'
 								$end 'Operation'
 							$end 'Operations'
+							$begin 'SubregionDependencyInformation'
+								ChildSubregions[0:]
+							$end 'SubregionDependencyInformation'
 						$end 'GeometryPart'
 					$end 'ToplevelParts'
 					$begin 'OperandParts'
@@ -1818,10 +2073,76 @@ $begin 'AnsoftProject'
 					$end 'DependencyInformation'
 				$end 'GeometryDependencies'
 			$end 'GeometryCore'
+			$begin 'AssignedEntities'
+				AssignedObject[15: 741, 748, 753, 758, 763, 768, 773, 778, 783, 788, 793, 798, 803, 808, 813]
+				$begin 'AssignedEdge'
+					kID=819
+					$begin 'EdgeData'
+						ParentObjectID=818
+						ParentFaces[1: 828]
+						$begin 'EdgeGeomTopol'
+							EdgeFaces(828)
+							$begin 'EdTolVts'
+								TolVt(0, 0, 0, 5e-07)
+								TolVt(4.77612251667468e-15, 4.18111888915926e-15, 26, 5e-07)
+							$end 'EdTolVts'
+							EdgeMidPoint(2.38806125833734e-15, 2.09055944457963e-15, 13)
+						$end 'EdgeGeomTopol'
+					$end 'EdgeData'
+				$end 'AssignedEdge'
+				$begin 'AssignedEdge'
+					kID=820
+					$begin 'EdgeData'
+						ParentObjectID=818
+						ParentFaces[1: 828]
+						$begin 'EdgeGeomTopol'
+							EdgeFaces(828)
+							$begin 'EdTolVts'
+								TolVt(4.77612251667468e-15, 4.18111888915926e-15, 26, 5e-07)
+								TolVt(10, 5.17691813926221e-15, 26, 5e-07)
+							$end 'EdTolVts'
+							EdgeMidPoint(5.00000000000001, 4.67901851421074e-15, 26)
+						$end 'EdgeGeomTopol'
+					$end 'EdgeData'
+				$end 'AssignedEdge'
+				$begin 'AssignedEdge'
+					kID=821
+					$begin 'EdgeData'
+						ParentObjectID=818
+						ParentFaces[1: 828]
+						$begin 'EdgeGeomTopol'
+							EdgeFaces(828)
+							$begin 'EdTolVts'
+								TolVt(10, 5.17691813926221e-15, 26, 5e-07)
+								TolVt(10, 9.9579925010296e-16, -1.83697019872103e-15, 5e-07)
+							$end 'EdTolVts'
+							EdgeMidPoint(10, 3.08635869468259e-15, 13)
+						$end 'EdgeGeomTopol'
+					$end 'EdgeData'
+				$end 'AssignedEdge'
+				$begin 'AssignedEdge'
+					kID=822
+					$begin 'EdgeData'
+						ParentObjectID=818
+						ParentFaces[1: 828]
+						$begin 'EdgeGeomTopol'
+							EdgeFaces(828)
+							$begin 'EdTolVts'
+								TolVt(0, 0, 0, 5e-07)
+								TolVt(10, 9.9579925010296e-16, -1.83697019872103e-15, 5e-07)
+							$end 'EdTolVts'
+							EdgeMidPoint(5, 4.9789962505148e-16, -9.18485099360515e-16)
+						$end 'EdgeGeomTopol'
+					$end 'EdgeData'
+				$end 'AssignedEdge'
+			$end 'AssignedEntities'
 			GroupByMaterial=true
 			GroupSheetByMaterial=true
 			GroupCompByDefID=true
 			DoNotOrganizeUnderGroup=true
+			DoNotOrganizeUnderComponent=false
+			OrganizeLightweight=false
+			ShowGroup=true
 			$begin 'LastUserInputs'
 			$end 'LastUserInputs'
 		$end 'ModelSetup'
@@ -1832,6 +2153,9 @@ $begin 'AnsoftProject'
 				$begin 'OP_Option'
 					LinkType='None'
 				$end 'OP_Option'
+				$begin 'MuLinkSrcObjs'
+					Objs[0:]
+				$end 'MuLinkSrcObjs'
 			$end 'GlobalBoundData'
 			$begin 'Boundaries'
 				NextUniqueID=56
@@ -1998,7 +2322,19 @@ $begin 'AnsoftProject'
 				$begin 'GlobalModelRes'
 					UseAutoLength=true
 				$end 'GlobalModelRes'
-				MeshMethod='AnsoftClassic'
+				$begin 'GlobalLengthMeshSetup'
+					RefineInside=true
+					ID=-1
+					Type='LengthBased'
+					IsComponent=false
+					Enabled=false
+					RestrictElem=false
+					NumMaxElem='1000'
+					RestrictLength=true
+					MaxLength='1mm'
+					ApplyToInitialMesh=false
+					IsGlobal=true
+				$end 'GlobalLengthMeshSetup'
 			$end 'MeshSettings'
 			$begin 'MeshOperations'
 				NextUniqueID=0
@@ -2013,6 +2349,9 @@ $begin 'AnsoftProject'
 					ID=1
 					SetupType='Magnetostatic'
 					Enabled=true
+					$begin 'MeshLink'
+						ImportMesh=false
+					$end 'MeshLink'
 					MaximumPasses=10
 					MinimumPasses=2
 					MinimumConvergedPasses=1
@@ -2020,8 +2359,10 @@ $begin 'AnsoftProject'
 					SolveFieldOnly=false
 					PercentError=1
 					SolveMatrixAtLast=true
-					PercentError=1
+					UseNonLinearIterNum=false
 					NonLinearResidual=0.0001
+					RelaxationFactor=1
+					SmoothBHCurve=false
 					$begin 'MuOption'
 						MuNonLinearBH=true
 					$end 'MuOption'
@@ -2039,6 +2380,7 @@ $begin 'AnsoftProject'
 		$begin 'FieldsReporter'
 			$begin 'FieldsCalculator'
 				Line_Discretization=1000
+				'Show Stack'=true
 			$end 'FieldsCalculator'
 			$begin 'PlotDefaults'
 				Default_SolutionId=576
@@ -2062,16 +2404,17 @@ $begin 'AnsoftProject'
 					$begin 'Scale3DSettings'
 						unit=103
 						m_nLevels=22
-						minvalue=8.25913218704954e-007
+						minvalue=8.25913218704954e-07
 						maxvalue=0.000108119886135682
 						log=false
-						IntrinsicMin=8.25913218704954e-007
+						IntrinsicMin=8.25913218704954e-07
 						IntrinsicMax=0.000108119886135682
 						LimitFieldValuePrecision=false
 						FieldValuePrecisionDigits=4
 						dB=false
+						AnimationStaticScale=false
 						ScaleType=0
-						UserSpecifyValues(23, 8.25909978630079e-007, 5.70291422263836e-006, 1.05799190350808e-005, 1.54569224832812e-005, 2.0333927750471e-005, 2.52109330176609e-005, 3.00879364658613e-005, 3.49649380950723e-005, 3.98419433622621e-005, 4.47189486294519e-005, 4.95959538966417e-005, 5.44729555258527e-005, 5.93499607930426e-005, 6.42269660602324e-005, 6.91039676894434e-005, 7.3980976594612e-005, 7.8857978223823e-005, 8.3734979853034e-005, 8.86119887582026e-005, 9.34889903874137e-005, 9.83659992925823e-005, 0.000103243000921793, 0.000108120002551004)
+						UserSpecifyValues(23, 8.25909978630079e-07, 5.70291422263836e-06, 1.05799190350808e-05, 1.54569224832812e-05, 2.0333927750471e-05, 2.52109330176609e-05, 3.00879364658613e-05, 3.49649380950723e-05, 3.98419433622621e-05, 4.47189486294519e-05, 4.95959538966417e-05, 5.44729555258527e-05, 5.93499607930426e-05, 6.42269660602324e-05, 6.91039676894434e-05, 7.3980976594612e-05, 7.8857978223823e-05, 8.3734979853034e-05, 8.86119887582026e-05, 9.34889903874137e-05, 9.83659992925823e-05, 0.000103243000921793, 0.000108120002551004)
 						ValueNumberFormatTypeAuto=1
 						ValueNumberFormatTypeScientific=true
 						ValueNumberFormatWidth=12
@@ -2101,6 +2444,7 @@ $begin 'AnsoftProject'
 						MinScaleFactor=0
 						MaxScaleFactor=1
 						DeformationScale=0
+						ShowDeformationOutline=false
 					$end 'DeformScaleSettings'
 				$end 'QuantityFolder_1'
 				NumPlots=2
@@ -2108,24 +2452,27 @@ $begin 'AnsoftProject'
 					PlotDefinitionType='Mesh_field_type'
 					PlotName='Mag_B1'
 					PlotDefinitionId=43
-					VersionID=6
+					VersionID=7
 					SolutionId=576
-					QuantityId=122
-					PlotFolder='B'
 					UserSpecifyName=0
 					UserSpecifyFolder=0
+					QuantityId=122
+					PlotFolder='B'
 					StreamlinePlot=false
+					AdjacentSidePlot=false
+					FullModelPlot=false
 					IntrinsicVar=''
 					FieldPlotGeometry(1, 128, 2, 1, 818)
 					FilterIds(0)
 					$begin 'PlotOnSurfaceSettings'
 						Filled=false
 						IsoValType='Fringe'
-						SmoothShade=true
 						AddGrid=false
 						MapTransparency=true
 						Refinement=0
 						Transparency=0
+						SmoothingLevel=0
+						ShadingType=0
 						$begin 'Arrow3DSpacingSettings'
 							ArrowUniform=true
 							ArrowSpacing=0.417851626873016
@@ -2134,29 +2481,34 @@ $begin 'AnsoftProject'
 						$end 'Arrow3DSpacingSettings'
 						GridColor(255, 255, 255)
 					$end 'PlotOnSurfaceSettings'
+					EnableGaussianSmoothing=false
+					SurfaceOnly=false
 				$end 'PlotDefinition_1'
 				$begin 'PlotDefinition_2'
 					PlotDefinitionType='Mesh_field_type'
 					PlotName='B_Vector1'
 					PlotDefinitionId=44
-					VersionID=6
+					VersionID=7
 					SolutionId=576
-					QuantityId=126
-					PlotFolder='B'
 					UserSpecifyName=0
 					UserSpecifyFolder=0
+					QuantityId=126
+					PlotFolder='B'
 					StreamlinePlot=false
+					AdjacentSidePlot=false
+					FullModelPlot=false
 					IntrinsicVar=''
 					FieldPlotGeometry(1, 128, 2, 1, 818)
 					FilterIds(0)
 					$begin 'PlotOnSurfaceSettings'
 						Filled=false
 						IsoValType='Fringe'
-						SmoothShade=true
 						AddGrid=false
 						MapTransparency=true
 						Refinement=0
 						Transparency=0
+						SmoothingLevel=0
+						ShadingType=0
 						$begin 'Arrow3DSpacingSettings'
 							ArrowUniform=true
 							ArrowSpacing=0.417851626873016
@@ -2165,6 +2517,8 @@ $begin 'AnsoftProject'
 						$end 'Arrow3DSpacingSettings'
 						GridColor(255, 255, 255)
 					$end 'PlotOnSurfaceSettings'
+					EnableGaussianSmoothing=false
+					SurfaceOnly=false
 				$end 'PlotDefinition_2'
 			$end 'FieldsPlotManagerID'
 			$begin 'Report3dInGeomWnd'
@@ -2203,8 +2557,8 @@ $begin 'AnsoftProject'
 							MoveBackwards=false
 							IDMap()
 						$end 'QuantityIDs'
-						SimValue('Mag_B', 1, 103, false, SimValueID=1324, 0, 0, 2, 0, false, false, 835, 1, 0, 1, 1, '', 0, 0, 'PC', false, '1001')
-						SimValue('Mag_B', 1, 103, false, SimValueID=1325, 0, 0, 2, 0, false, false, 830, 1, 0, 1, 1, '', 0, 0, 'PC', false, '1001')
+						SimValue('Mag_B', 1, 103, false, SimValueID=1399, 0, 0, 2, 0, false, false, 835, 1, 0, 1, 1, '', 0, 0, 'PC', false, '1001')
+						SimValue('Mag_B', 1, 103, false, SimValueID=1400, 0, 0, 2, 0, false, false, 830, 1, 0, 1, 1, '', 0, 0, 'PC', false, '1001')
 						$begin 'Sweeps'
 							$begin 'PostprocessSweep'
 								Variable='NormalizedDistance'
@@ -2268,6 +2622,7 @@ $begin 'AnsoftProject'
 					Soln(N='LastAdaptive', I=576)
 				$end 'Setup'
 			$end 'ID Map'
+			ValidationCacheHeader=''
 		$end 'SolutionManager'
 		$begin 'UserDefinedSolutionMgr'
 			NextUniqueID=1000000
@@ -2294,6 +2649,10 @@ $begin 'AnsoftProject'
 				$begin 'Properties'
 					TextProp('ID', 'SRID', '', '0')
 				$end 'Properties'
+				$begin 'Parameters'
+					MenuProp('CoSimulator', 'OHD', '', 'DefaultNetlist', 0)
+					ButtonProp('CosimDefinition', 'OHD', '', 'Edit', 'Edit', 40501, ButtonPropClientData())
+				$end 'Parameters'
 			$end 'Compinst'
 		$end 'CompInstances'
 		$begin 'Instance'
@@ -2303,7 +2662,7 @@ $begin 'AnsoftProject'
 				DesignInstanceID=1
 				$begin 'WindowPosition'
 					$begin 'EditorWindow'
-						Circuit(Editor3d(View(WindowPos(3, -1, -1, -8, -31, 26, 26, 1221, 552), OrientationMatrix(0.0692307725548744, -8.22515444642846e-010, 1.41730027714004e-009, 0, 1.93750460120157e-009, 1.93750460120157e-009, -0.0692307725548744, 0, 9.68752300600784e-010, 0.0692307725548744, -3.87500920240313e-009, 0, -0.346153795719147, -0.900000035762787, -4.80000019073486, 1, 0, -0.550248920917511, 0.643591105937958, -0.476969420909882, 0.437732100486755, -0.0213651657104492, 9.62136554718018), Drawings[18: 'Rectangle2', 'Circle12', 'Circle12_1', 'Circle12_2', 'Circle12_3', 'Circle12_4', 'Circle12_5', 'Circle12_6', 'Circle12_7', 'Circle12_8', 'Circle12_9', 'Circle12_10', 'Circle12_11', 'Circle12_12', 'Circle12_13', 'Circle12_14', 'Polyline1', 'Polyline2'], 'View Data'('Render Mode'=1, 'Show Ruler'=1, 'Coordinate Systems View Mode'=0, 'CS Triad View Mode'=0, GridVisible=1, GridAutoAdjust=1, GridAutoExtents=1, GridType='Rect', GridStyle='Line', NumPixels=30, dXForGrid=0.5, dYForGrid=0.5, dZForGrid=0.5, dRForGrid=0.5, dThetaForGrid=10), ClipPlanes(ClipPlaneOptions(DisableWhenDrawingNewPlane=true, ForceOpqaueForUnclipped=false, ShowClipped=false, Transparency=0, HandleColor=16776960)))))
+						Circuit(Editor3d())
 					$end 'EditorWindow'
 				$end 'WindowPosition'
 				$begin 'ReportSetup'
@@ -2453,6 +2812,9 @@ $begin 'AnsoftProject'
 								DisplayType=1
 								Title=''
 								Domain=''
+								$begin 'Migration'
+									MigVersion(1, 0, '2021R1 mig(1.0)')
+								$end 'Migration'
 								$begin 'Graph2DsV2'
 									$begin 'Graph2D'
 										TraceDefID=29
@@ -2480,31 +2842,12 @@ $begin 'AnsoftProject'
 										$begin 'PlotAttributeStoreMap'
 											$begin 'MainMapItem'
 												$begin 'SubMapItem'
-													DataSourceID=27
-													$begin 'CartesianGridDescAttribute'
-														ShowXMinor=true
-														ShowYMinor=true
-														ShowXMajor=true
-														ShowYMajor=true
-														ShowBorder=true
-													$end 'CartesianGridDescAttribute'
-												$end 'SubMapItem'
-											$end 'MainMapItem'
-											$begin 'MainMapItem'
-												$begin 'SubMapItem'
-													DataSourceID=37
-													$begin 'CurveCartesianAttribute'
-														YAxis='Y1'
-													$end 'CurveCartesianAttribute'
-												$end 'SubMapItem'
-											$end 'MainMapItem'
-											$begin 'MainMapItem'
-												$begin 'SubMapItem'
 													DataSourceID=37
 													$begin 'CurveRenderAttribute'
 														$begin 'LineRenderAttribute'
 															LineStyle='Solid'
 															LineWidth=3
+															ColorVersion=1
 															LineColor(R=255, G=0, B=0)
 														$end 'LineRenderAttribute'
 														TraceType='Continuous'
@@ -2538,7 +2881,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TitleFont'
 														$begin 'SubtitleFont'
@@ -2559,7 +2902,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'SubtitleFont'
 													$end 'HeaderRenderAttribute'
@@ -2589,7 +2932,7 @@ $begin 'AnsoftProject'
 																			PitchAndFamily=0
 																			FaceName='Arial'
 																		$end 'Font'
-																		Color(R=0, G=0, B=0)
+																		ColorVersion=1
 																	$end 'FontAttribute'
 																$end 'TableFontAttrib'
 																$begin 'TableTitleFontAttrib'
@@ -2610,17 +2953,18 @@ $begin 'AnsoftProject'
 																			PitchAndFamily=0
 																			FaceName='Arial'
 																		$end 'Font'
-																		Color(R=0, G=0, B=0)
+																		ColorVersion=1
 																	$end 'FontAttribute'
 																$end 'TableTitleFontAttrib'
 																TableBorderLineWidth=1
-																TableBorderLineColor=0
+																ColorVersion=1
 																TableGridLineWidth=1
 																TableGridLineColor=12632256
-																TableBackgroundColor=16777215
+																ColorVersion=1
 																TableHeaderBackgroundColor=14408667
 															$end 'TableRenderAttribute'
 														$end 'LegendTableAttrib'
+														LegendName=''
 														ShowTraceName=true
 														ShowSolutionName=true
 														ShowVariationKey=true
@@ -2631,12 +2975,20 @@ $begin 'AnsoftProject'
 											$end 'MainMapItem'
 											$begin 'MainMapItem'
 												$begin 'SubMapItem'
+													DataSourceID=37
+													$begin 'CurveCartesianAttribute'
+														YAxis='Y1'
+													$end 'CurveCartesianAttribute'
+												$end 'SubMapItem'
+											$end 'MainMapItem'
+											$begin 'MainMapItem'
+												$begin 'SubMapItem'
 													DataSourceID=1
 													$begin 'LineAxisRenderAttribute'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2662,7 +3014,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2687,7 +3039,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2713,7 +3065,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2738,7 +3090,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2764,7 +3116,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2789,7 +3141,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2815,7 +3167,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2840,7 +3192,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2866,7 +3218,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2891,7 +3243,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2917,7 +3269,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2942,7 +3294,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -2968,7 +3320,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -2993,7 +3345,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3019,7 +3371,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3044,7 +3396,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3070,7 +3422,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3095,7 +3447,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3121,7 +3473,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3146,7 +3498,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3172,7 +3524,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3197,7 +3549,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3223,7 +3575,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3248,7 +3600,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3274,7 +3626,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3299,7 +3651,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3325,7 +3677,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3350,7 +3702,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3376,7 +3728,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3401,7 +3753,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3427,7 +3779,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3452,7 +3804,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3478,7 +3830,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3503,7 +3855,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3529,7 +3881,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3554,7 +3906,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3580,7 +3932,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3605,7 +3957,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3631,7 +3983,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3656,7 +4008,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -3682,7 +4034,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -3700,6 +4052,18 @@ $begin 'AnsoftProject'
 														NeverCollapse=false
 														AxisStripes=true
 													$end 'LineAxisRenderAttribute'
+												$end 'SubMapItem'
+											$end 'MainMapItem'
+											$begin 'MainMapItem'
+												$begin 'SubMapItem'
+													DataSourceID=27
+													$begin 'CartesianGridDescAttribute'
+														ShowXMinor=true
+														ShowYMinor=true
+														ShowXMajor=true
+														ShowYMajor=true
+														ShowBorder=true
+													$end 'CartesianGridDescAttribute'
 												$end 'SubMapItem'
 											$end 'MainMapItem'
 										$end 'PlotAttributeStoreMap'
@@ -3789,19 +4153,6 @@ $begin 'AnsoftProject'
 												$end 'MainMapItem'
 												$begin 'MainMapItem'
 													$begin 'SubMapItem'
-														DataSourceID=4
-														$begin 'CartesianCurveGroupLayoutAttribute'
-															X_spc=0.02
-															X_fwd=5
-															X_fpr=2
-															Y1_spc=5e-006
-															Y1_fwd=5
-															Y1_fpr=2
-														$end 'CartesianCurveGroupLayoutAttribute'
-													$end 'SubMapItem'
-												$end 'MainMapItem'
-												$begin 'MainMapItem'
-													$begin 'SubMapItem'
 														DataSourceID=6
 														$begin 'DockableOverlayLayoutAttribute'
 															$begin 'Dock_0'
@@ -3841,6 +4192,19 @@ $begin 'AnsoftProject'
 																$end 'OverlayLayoutAttribute'
 															$end 'Dock_2'
 														$end 'DockableOverlayLayoutAttribute'
+													$end 'SubMapItem'
+												$end 'MainMapItem'
+												$begin 'MainMapItem'
+													$begin 'SubMapItem'
+														DataSourceID=4
+														$begin 'CartesianCurveGroupLayoutAttribute'
+															X_spc=0.02
+															X_fwd=5
+															X_fpr=2
+															Y1_spc=5e-06
+															Y1_fwd=5
+															Y1_fpr=2
+														$end 'CartesianCurveGroupLayoutAttribute'
 													$end 'SubMapItem'
 												$end 'MainMapItem'
 											$end 'PlotAttributeStoreMap'
@@ -3884,6 +4248,9 @@ $begin 'AnsoftProject'
 								DisplayType=1
 								Title=''
 								Domain=''
+								$begin 'Migration'
+									MigVersion(1, 0, '2021R1 mig(1.0)')
+								$end 'Migration'
 								$begin 'Graph2DsV2'
 									$begin 'Graph2D'
 										TraceDefID=31
@@ -3911,31 +4278,12 @@ $begin 'AnsoftProject'
 										$begin 'PlotAttributeStoreMap'
 											$begin 'MainMapItem'
 												$begin 'SubMapItem'
-													DataSourceID=27
-													$begin 'CartesianGridDescAttribute'
-														ShowXMinor=true
-														ShowYMinor=true
-														ShowXMajor=true
-														ShowYMajor=true
-														ShowBorder=true
-													$end 'CartesianGridDescAttribute'
-												$end 'SubMapItem'
-											$end 'MainMapItem'
-											$begin 'MainMapItem'
-												$begin 'SubMapItem'
-													DataSourceID=37
-													$begin 'CurveCartesianAttribute'
-														YAxis='Y1'
-													$end 'CurveCartesianAttribute'
-												$end 'SubMapItem'
-											$end 'MainMapItem'
-											$begin 'MainMapItem'
-												$begin 'SubMapItem'
 													DataSourceID=37
 													$begin 'CurveRenderAttribute'
 														$begin 'LineRenderAttribute'
 															LineStyle='Solid'
 															LineWidth=3
+															ColorVersion=1
 															LineColor(R=255, G=0, B=0)
 														$end 'LineRenderAttribute'
 														TraceType='Continuous'
@@ -3969,7 +4317,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TitleFont'
 														$begin 'SubtitleFont'
@@ -3990,7 +4338,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'SubtitleFont'
 													$end 'HeaderRenderAttribute'
@@ -4020,7 +4368,7 @@ $begin 'AnsoftProject'
 																			PitchAndFamily=0
 																			FaceName='Arial'
 																		$end 'Font'
-																		Color(R=0, G=0, B=0)
+																		ColorVersion=1
 																	$end 'FontAttribute'
 																$end 'TableFontAttrib'
 																$begin 'TableTitleFontAttrib'
@@ -4041,17 +4389,18 @@ $begin 'AnsoftProject'
 																			PitchAndFamily=0
 																			FaceName='Arial'
 																		$end 'Font'
-																		Color(R=0, G=0, B=0)
+																		ColorVersion=1
 																	$end 'FontAttribute'
 																$end 'TableTitleFontAttrib'
 																TableBorderLineWidth=1
-																TableBorderLineColor=0
+																ColorVersion=1
 																TableGridLineWidth=1
 																TableGridLineColor=12632256
-																TableBackgroundColor=16777215
+																ColorVersion=1
 																TableHeaderBackgroundColor=14408667
 															$end 'TableRenderAttribute'
 														$end 'LegendTableAttrib'
+														LegendName=''
 														ShowTraceName=true
 														ShowSolutionName=true
 														ShowVariationKey=true
@@ -4062,12 +4411,20 @@ $begin 'AnsoftProject'
 											$end 'MainMapItem'
 											$begin 'MainMapItem'
 												$begin 'SubMapItem'
+													DataSourceID=37
+													$begin 'CurveCartesianAttribute'
+														YAxis='Y1'
+													$end 'CurveCartesianAttribute'
+												$end 'SubMapItem'
+											$end 'MainMapItem'
+											$begin 'MainMapItem'
+												$begin 'SubMapItem'
 													DataSourceID=1
 													$begin 'LineAxisRenderAttribute'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4093,7 +4450,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4118,7 +4475,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4144,7 +4501,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4169,7 +4526,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4195,7 +4552,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4220,7 +4577,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4246,7 +4603,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4271,7 +4628,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4297,7 +4654,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4322,7 +4679,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4348,7 +4705,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4373,7 +4730,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4399,7 +4756,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4424,7 +4781,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4450,7 +4807,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4475,7 +4832,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4501,7 +4858,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4526,7 +4883,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4552,7 +4909,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4577,7 +4934,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4603,7 +4960,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4628,7 +4985,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4654,7 +5011,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4679,7 +5036,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4705,7 +5062,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4730,7 +5087,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4756,7 +5113,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4781,7 +5138,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4807,7 +5164,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4832,7 +5189,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4858,7 +5215,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4883,7 +5240,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4909,7 +5266,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4934,7 +5291,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -4960,7 +5317,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -4985,7 +5342,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -5011,7 +5368,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -5036,7 +5393,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -5062,7 +5419,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -5087,7 +5444,7 @@ $begin 'AnsoftProject'
 														DecimalFieldWidth=3
 														DecimalFieldPrecision=2
 														ManualTitle=''
-														AxisColor(R=0, G=0, B=0)
+														ColorVersion=1
 														MinScale=0
 														MaxScale=1
 														TickSpacing=1
@@ -5113,7 +5470,7 @@ $begin 'AnsoftProject'
 																	PitchAndFamily=0
 																	FaceName='Arial'
 																$end 'Font'
-																Color(R=0, G=0, B=0)
+																ColorVersion=1
 															$end 'FontAttribute'
 														$end 'TextFont'
 														InfMapMode=false
@@ -5131,6 +5488,18 @@ $begin 'AnsoftProject'
 														NeverCollapse=false
 														AxisStripes=true
 													$end 'LineAxisRenderAttribute'
+												$end 'SubMapItem'
+											$end 'MainMapItem'
+											$begin 'MainMapItem'
+												$begin 'SubMapItem'
+													DataSourceID=27
+													$begin 'CartesianGridDescAttribute'
+														ShowXMinor=true
+														ShowYMinor=true
+														ShowXMajor=true
+														ShowYMajor=true
+														ShowBorder=true
+													$end 'CartesianGridDescAttribute'
 												$end 'SubMapItem'
 											$end 'MainMapItem'
 										$end 'PlotAttributeStoreMap'
@@ -5220,19 +5589,6 @@ $begin 'AnsoftProject'
 												$end 'MainMapItem'
 												$begin 'MainMapItem'
 													$begin 'SubMapItem'
-														DataSourceID=4
-														$begin 'CartesianCurveGroupLayoutAttribute'
-															X_spc=0.01
-															X_fwd=4
-															X_fpr=2
-															Y1_spc=2e-005
-															Y1_fwd=5
-															Y1_fpr=2
-														$end 'CartesianCurveGroupLayoutAttribute'
-													$end 'SubMapItem'
-												$end 'MainMapItem'
-												$begin 'MainMapItem'
-													$begin 'SubMapItem'
 														DataSourceID=6
 														$begin 'DockableOverlayLayoutAttribute'
 															$begin 'Dock_0'
@@ -5274,6 +5630,19 @@ $begin 'AnsoftProject'
 														$end 'DockableOverlayLayoutAttribute'
 													$end 'SubMapItem'
 												$end 'MainMapItem'
+												$begin 'MainMapItem'
+													$begin 'SubMapItem'
+														DataSourceID=4
+														$begin 'CartesianCurveGroupLayoutAttribute'
+															X_spc=0.01
+															X_fwd=4
+															X_fpr=2
+															Y1_spc=2e-05
+															Y1_fwd=5
+															Y1_fpr=2
+														$end 'CartesianCurveGroupLayoutAttribute'
+													$end 'SubMapItem'
+												$end 'MainMapItem'
 											$end 'PlotAttributeStoreMap'
 											PlotType=1
 										$end 'MapItem'
@@ -5311,15 +5680,11 @@ $begin 'AnsoftProject'
 						$begin 'XY Plot 1'
 							ReportID=30
 							$begin 'WindowInfoList'
-								$begin 'Report2D'
-								$end 'Report2D'
 							$end 'WindowInfoList'
 						$end 'XY Plot 1'
 						$begin 'XY Plot 2'
 							ReportID=32
 							$begin 'WindowInfoList'
-								$begin 'Report2D'
-								$end 'Report2D'
 							$end 'WindowInfoList'
 						$end 'XY Plot 2'
 					$end 'ReportsWindowInfoList'
@@ -5336,7 +5701,6 @@ $begin 'AnsoftProject'
 			$begin 'Maxwell2DDesign1'
 				$begin 'CosimDefinition'
 					CosimDefName='DefaultNetlist'
-					DefinitionCompName=''
 					$begin 'SODInstanceMap'
 					$end 'SODInstanceMap'
 					SODComponentList()
@@ -5353,60 +5717,16 @@ $begin 'AnsoftProject'
 	$begin 'WBMaterialGuidDetails'
 		WBMaterialGuidMap()
 	$end 'WBMaterialGuidDetails'
+	$begin 'MinervaProjectSettingsBlk'
+		MinervaRemoteFilePath=''
+		FolderContainerString=''
+	$end 'MinervaProjectSettingsBlk'
 $end 'AnsoftProject'
 $begin 'AllReferencedFilesForProject'
 $end 'AllReferencedFilesForProject'
 $begin 'ProjectPreview'
 	IsEncrypted=false
-	Thumbnail64='/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE\
-BAQICAQECAQEBAgICAgICAgICAQICAgICAgICAgL/2wBDAQEBAQEBAQEBAQECAQEBAgICAgICAgICAg\
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/wAARCABgAGADASIAAhEBAxEB/\
-8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQR\
-BRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUp\
-TVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5us\
-LDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAA\
-AECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHB\
-CSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ\
-3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4u\
-Pk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooA+LLD9sPXPEV14obwL+yN+0x4+\
-8PeGfiD8TPhsPGGg6x+ydpOh67rnwm+Ifif4X+LbvRbHxz+1JpGrJpI8WeENbjtpL7TLKaeGBJ/IRJF\
-zo/8NRfEz/oxf9q7/wAKr9iP/wCjIrl/2TP+SZ+Of+zrv26//W3P2hK+mq44SqThCbqtOSTslG2qT6x\
-b/E4qbqzpwm60k5pOyULapPS8G7fM8N/4ai+Jn/Ri/wC1d/4VX7Ef/wBGRVjQf2rtTu/iH8MPh742/Z\
-j/AGg/hM/xb8U614K8J+LPHGp/s1av4XHibRPhv49+Kkumaonws/aL8SarZ+d4V+G/igwTLpclv9ogh\
-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\
-YKKKKAP/2Q=='
+	Thumbnail64=''
 	$begin 'DesignInfo'
 		DesignName='Maxwell2DDesign1'
 		Notes=''
@@ -5416,94 +5736,6 @@ YKKKKAP/2Q=='
 		'Nominal Setup Types'[1: '']
 		'Optimetrics Setups'[0:]
 		'Optimetrics Experiment Types'[0:]
-		Image64='/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE\
-BAQICAQECAQEBAgICAgICAgICAQICAgICAgICAgL/2wBDAQEBAQEBAQEBAQECAQEBAgICAgICAgICAg\
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/wAARCADIAMgDASIAAhEBAxEB/\
-8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQR\
-BRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUp\
-TVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5us\
-LDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAA\
-AECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHB\
-CSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ\
-3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4u\
-Pk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooAKKKKACiiigAor5F/au174h2mp\
-/sx+Cfh78T/ABT8JH+LP7Qep+B/FnizwVovw31vxMfC+kfs1ftF/FNNL02L4qeAvEmlWfneKvhv4Xaa\
-c6W9x9nt5YYZofOdq5n/AIUx8a/+j7f2pP8AwjP2If8A6DmsZVrSlFU5S5HZtcttk+sk9muhhKvac4K\
-lKfI7NrltdpPrJPZrofcFFfD/APwpj41/9H2/tSf+EZ+xD/8AQc0f8KY+Nf8A0fb+1J/4Rn7EP/0HNL\
-27/wCfM/8AyT/5MXt3/wA+J/fT/wDkz7gor4f/AOFMfGv/AKPt/ak/8Iz9iH/6Dmj/AIUx8a/+j7f2p\
-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'
+		Image64=''
 	$end 'DesignInfo'
 $end 'ProjectPreview'
